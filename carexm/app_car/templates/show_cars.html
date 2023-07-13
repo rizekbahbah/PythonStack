@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR DEALZ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/show_pies_style.css' %}">
+</head>
+<body>
+    <a class="button" href="/logout">Logout</a>
+
+<br><br>
+    <div id="add_col">
+        <h1>CAR</h1>
+        <form action="/add/car" method="post">
+            {% csrf_token %}
+            <div id="inputs_container">
+                <div class="input_item">
+                    <label for="name">price:</label>
+                    <input type="text" name="price">
+                </div>
+                <div class="input_item">
+                    <label for="filling">model:</label>
+                    <input type="text" name="model">
+                </div>
+                <div class="input_item">
+                    <label for="crust">make:</label>
+                    <input type="text" name="make">
+                </div>
+                <div class="input_item">
+                    <label for="crust">year:</label>
+                    <input type="text" name="year">
+                </div>
+
+                <div class="input_item">
+                    <label for="">Description:</label>
+                    <textarea name="description" cols="20" rows="3"></textarea>
+                </div>
+            </div>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</div>
+{% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+    <li class="error_msg" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

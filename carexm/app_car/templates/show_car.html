@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR DEALZ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/show_pie_style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <a class="button" href="/dashboard">DashBoard</a>
+        <a class="button" href="/logout">Logout</a>
+    </div>
+    <div id="main_container">
+        <h1>{{ car.price }} $ </h1>
+        <p>Model : {{ car.model }}</p>
+        <p>Make : {{ car.make }}</p>
+        <p>Year :{{ car.year }}</p>
+        <p>Description : {{ car.description }}</p>
+
+        <p>seller: {{ car.created_by.first_name }}</p>
+        
+    </div>
+
+    <a class="button" href="/dashboard">Purchase</a>
+
+</body>
+</html>

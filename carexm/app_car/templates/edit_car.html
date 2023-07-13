@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR DEALZ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_pie_style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <a class="button" href="/dashboard">DashBoard</a>
+        <a class="button" href="/logout">Logout</a>
+    </div>
+    <div id="add_col">
+        <h1>Edit {{ car.model }}</h1>
+        <form action="/edit/car" method="post">
+            {% csrf_token %}
+            <div id="inputs_container">
+                <div class="input_item">
+                    <label for="name">Price:</label>
+                    <input type="text" name="price" value="{{ car.price }}">
+                </div>
+                <div class="input_item">
+                    <label for="filling">Model:</label>
+                    <input type="text" name="model" value="{{ car.model }}">
+                </div>
+                <div class="input_item">
+                    <label for="crust">Make:</label>
+                    <input type="text" name="make" value="{{ car.make }}">
+                </div>
+
+                <div class="input_item">
+                    <label for="crust">Year:</label>
+                    <input type="text" name="year" value="{{ car.year }}">
+                </div>
+
+                <div class="input_item">
+                    <label for="">Description:</label>
+                    <textarea name="description" cols="20" rows="3" value="{{ car.description }}">{{ car.description }}</textarea>
+
+                </div>
+
+                <input type="hidden" name="car_id" value="{{ car.id }}">
+            </div>
+            <input type="submit" value="Update">
+        </form>
+
+
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li class="error_msg" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+    </div>
+</body>
+</html>

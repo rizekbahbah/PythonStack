@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+</head>
+
+<body>
+    <a href="/shows">Go Back</a>
+    <h1>Edit Show {{show.id}}</h1>
+    <form action="/shows/edit" method="post">
+        {% csrf_token %}
+        <h4>title</h4>
+        <input type="text" name="title" value="{{show.title}}"><br>
+        <label>Network <br> <input type="text" name="network" value="{{show.network}}"></label> <br>
+        <label>Release Date <br> <input type="date" name="date" value="{{show.release_date}}"></label>
+        <h4>Description</h4>
+        <textarea name="description" cols="30" rows="10">{{show.description}}</textarea>
+        <br>
+        <input type="submit" value="Update">
+        <input type="hidden" name="edit" value="{{show.id}}">
+    </form>
+    
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li {% if message.tags%} {%endif%}>{{message}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+
+    <a href="/shows/{{show.id}}">Go to Show</a>
+
+</body>
+
+</html>

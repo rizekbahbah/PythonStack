@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h3>Thank you for your business!</h3>
+            <p>We charged your credit card for {{ request.session.product_price}}</p>
+            <p>You have ordered {{ request.session.products_ordered }} items so far and spent ${{request.session.total_spent}} with Amadon.com!</p>
+            <p><a href="/">Go Back</a></p>
+
+        </div>
+    </div>
+</body>
+
+</html>

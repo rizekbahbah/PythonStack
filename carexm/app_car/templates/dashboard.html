@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAR DEALZ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_style.css' %}">
+</head>
+<body>
+    <div id="header">
+       
+        <a class="button" href="/logout">Logout</a>
+    </div>
+    <div id="main_container">
+        <div id="cars_col">
+            <h1>Welcome To CarDEALZ {{ user.first_name }}</h1>
+            <div id="main_container">
+                <table>
+                    <tr>
+                        <td>Model</td>
+                        <td>Year</td>
+                        <td>Seller</td>
+                        <td>Actions</td>
+        
+                    </tr>
+                    {% for car in cars %}
+                    <tr>
+                        <td>{{ car.model }}</a></td>
+                        <td>{{ car.year }}</td>
+                        <td>{{ car.created_by.first_name }}</td>
+
+                        {% if request.session.user_id == car.created_by.id %}
+                        <td>
+                            <a href="/edit/{{ car.id }}">edit</a>
+                            <a href="{% url 'del_car' car.id %}">delete</a>
+                            <a href="{% url 'show_car' id=car.id %}">View  </a>
+                        </td>
+                        {% else %}
+                        <td>
+                        <a href="{% url 'show_car' id=car.id %}">View</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+ 
+        </div>
+
+<br><br>
+
+        <a class="button" href="/cars">ADD A NEW CAR !</a>
+</body>
+</html>
